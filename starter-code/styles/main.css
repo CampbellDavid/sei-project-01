@@ -14,7 +14,7 @@ body {
   justify-content: center;
 }
 
-.grid {
+div.grid {
   height: 440px;
   width: 640px;
   display: flex;
@@ -22,8 +22,24 @@ body {
   background-color: red;
 }
 
-.grid-item {
+div.grid-item {
   width: 40px;
   height: 40px;
   border: 1px solid black;
+}
+
+div.grid-item.userOne {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+div.grid-item.food-location {
+  width: 40px;
+  height: 40px;
+  background-color: blue;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
