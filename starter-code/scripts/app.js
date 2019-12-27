@@ -3,8 +3,12 @@ function init() {
 
   const grid = document.querySelector('.grid')
 
+  const snake = []
+
+
 
   // Variables
+
 
   const width = 16                                            // no. boxed for width
 
