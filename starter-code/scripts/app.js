@@ -75,24 +75,28 @@ function init() {
 
     const randomNumbers = new Set()
     console.log(randomNumbers)
-    while (randomNumbers.size < 1) {
-      const foodNumber = Math.floor(Math.random() * ((width * height) - 1))
-      if (foodNumber !== snakeLocation) {
-        randomNumbers.add(foodNumber)
-        cubes[foodNumber].classList.add('food-location')
-        console.log('food is located in box no', foodNumber)
-      } else {
-        randomNumbers.add(foodNumber - 1)
-        cubes[foodNumber - 1].classList.add('food-location')
-        console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
+
+    function generateFood() {
+      while (randomNumbers.size < 1) {
+        const foodNumber = Math.floor(Math.random() * ((width * height) - 1))
+        if (foodNumber !== snakeLocation) {
+          randomNumbers.add(foodNumber)
+          cubes[foodNumber].classList.add('food-location')
+          console.log('food is located in box no', foodNumber)
+        } else {
+          randomNumbers.add(foodNumber - 1)
+          cubes[foodNumber - 1].classList.add('food-location')
+          console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
+        }
+
+        console.log(foodNumber)
+
       }
-
-      console.log(foodNumber)
-
     }
-  }
 
-  console.log(snakeLocation)
+    generateFood()
+
+  }
 
   snakePosition()
   createFood()
