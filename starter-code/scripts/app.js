@@ -1,34 +1,27 @@
 function init() {
+
   // DOM Variables
 
   const grid = document.querySelector('.grid')
 
   const cubes = []
 
-
-
   // Variables
 
+  const width = 16                                              // no. boxed for width
 
-  const width = 16                                            // no. boxed for width
-
-  const height = 11                                           // no. boxes for height
+  const height = 11                                             // no. boxes for height
 
   let snakeLocation = Math.floor((height * width) / 2)
 
-  Array(height * width).join('.').split('.').forEach(() => {  // create Array
-    const box = document.createElement('div')              // create a div element on the DOM
-    box.classList.add('grid-item')                         // create a class called 'grid item' to the div element
+  Array(height * width).join('.').split('.').forEach(() => {    // create Array
+    const box = document.createElement('div')                   // create a div element on the DOM
+    box.classList.add('grid-item')                              // create a class called 'grid item' to the div element
     cubes.push(box)
-    grid.appendChild(box)                                  // append the element as a child to the 'grid' element
+    grid.appendChild(box)                                       // append the element as a child to the 'grid' element
   })
 
-
   // Functions
-
-  // function newGame () {
-
-  // }
 
   function snakePosition() {
 
@@ -69,11 +62,13 @@ function init() {
       }
       cubes.forEach(cube => cube.classList.remove('userOne'))
       cubes[snakeLocation].classList.add('userOne')
-      console.log('head of snake is at box number', snakeLocation)
-      
+
+      console.log(`head of snake is at box number ${snakeLocation}`)
 
     }
+
     window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
+
   }
 
   function createFood() {
@@ -81,7 +76,6 @@ function init() {
     const randomNumbers = new Set()
     console.log(randomNumbers)
     while (randomNumbers.size < 1) {
-      // const foodNumber = Math.floor(Math.random() * 3)
       const foodNumber = Math.floor(Math.random() * ((width * height) - 1))
       if (foodNumber !== snakeLocation) {
         randomNumbers.add(foodNumber)
@@ -92,47 +86,18 @@ function init() {
         cubes[foodNumber - 1].classList.add('food-location')
         console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
       }
-      // console.log(foodNumber)
+
+      console.log(foodNumber)
 
     }
-
-    console.log(createFood)
   }
 
-  // function growSnake() {
-  //   if (createFood.foodNumber !== snakePosition.userPressedKey.snakeLocation) {
-  //     console.log('snake is not growing')
-  //   } else {
-  //     console.log('snake is growing!')
-  //   }
-  // }
+  console.log(snakeLocation)
 
-
-
-
-
-
-  // console.log(snakeLocation)
   snakePosition()
   createFood()
-  // growSnake()
 
   // Event handlers
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 window.addEventListener('DOMContentLoaded', init)
