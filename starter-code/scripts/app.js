@@ -14,7 +14,7 @@ function init() {
 
   const height = 11                                           // no. boxes for height
 
-  let snakeLocation = 1
+  let snakeLocation = Math.floor((height * width) / 2)
 
   Array(height * width).join('.').split('.').forEach(() => {  // create Array
     const box = document.createElement('div')              // create a div element on the DOM
@@ -30,54 +30,95 @@ function init() {
 
   // }
 
-  cubes[snakeLocation].classList.add('userOne')
+  function snakePosition() {
 
-  function userPressedKey(e) {
-    switch (e.keyCode) {
-      case 39:  // right arrow	
-        if (snakeLocation % width < width - 1) {
-          snakeLocation++
-        }
-        break
-      case 37:  // left arrow
-        if (snakeLocation % width > 0) {
-          snakeLocation--
-        }
-        break
-      case 40:  // down arrow
-        if (snakeLocation + width < width * height) {
-          snakeLocation += width
-        }
-        break
-      case 38:  // up arrow	
-        if (snakeLocation - width >= 0) {
-          snakeLocation -= width
-        }
-        break
-      default:
-        console.log('player shouldnt move')
-    }
-    cubes.forEach(cube => cube.classList.remove('userOne'))
     cubes[snakeLocation].classList.add('userOne')
-    console.log('current plauer index is', snakeLocation)
+
+    function userPressedKey(e) {
+      switch (e.keyCode) {
+        case 39:  // right arrow	
+          if (snakeLocation % width < width - 1) {
+            snakeLocation++
+          } else {
+            console.log('max right direction reached')
+          }
+          break
+        case 37:  // left arrow
+          if (snakeLocation % width > 0) {
+            snakeLocation--
+          } else {
+            console.log('max left direction reached')
+          }
+          break
+        case 40:  // down arrow
+          if (snakeLocation + width < width * height) {
+            snakeLocation += width
+          } else {
+            console.log('max down direction reached')
+          }
+          break
+        case 38:  // up arrow	
+          if (snakeLocation - width >= 0) {
+            snakeLocation -= width
+          } else {
+            console.log('max up direction reached')
+          }
+          break
+        default:
+          console.log('player shouldnt move')
+      }
+      cubes.forEach(cube => cube.classList.remove('userOne'))
+      cubes[snakeLocation].classList.add('userOne')
+      console.log('head of snake is at box number', snakeLocation)
+      
+
+    }
+    window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
   }
 
   function createFood() {
+
     const randomNumbers = new Set()
+    console.log(randomNumbers)
     while (randomNumbers.size < 1) {
-      const randomNumber = Math.floor(Math.random() * ((width * height) - 1))
-      console.log(randomNumber)
-      randomNumbers.add(randomNumber)
-      cubes[randomNumber].classList.add('food-location')
+      // const foodNumber = Math.floor(Math.random() * 3)
+      const foodNumber = Math.floor(Math.random() * ((width * height) - 1))
+      if (foodNumber !== snakeLocation) {
+        randomNumbers.add(foodNumber)
+        cubes[foodNumber].classList.add('food-location')
+        console.log('food is located in box no', foodNumber)
+      } else {
+        randomNumbers.add(foodNumber - 1)
+        cubes[foodNumber - 1].classList.add('food-location')
+        console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
+      }
+      // console.log(foodNumber)
+
     }
+
+    console.log(createFood)
   }
 
-  createFood()
+  // function growSnake() {
+  //   if (createFood.foodNumber !== snakePosition.userPressedKey.snakeLocation) {
+  //     console.log('snake is not growing')
+  //   } else {
+  //     console.log('snake is growing!')
+  //   }
+  // }
 
+
+
+
+
+
+  // console.log(snakeLocation)
+  snakePosition()
+  createFood()
+  // growSnake()
 
   // Event handlers
 
-  window.addEventListener('keydown', userPressedKey)
 
 
 
