@@ -8,6 +8,10 @@ function init() {
 
   // Variables
 
+  let level = 0
+
+  let score = 0
+
   const width = 16                                              // no. boxed for width
 
   const height = 11                                             // no. boxes for height
@@ -27,35 +31,46 @@ function init() {
 
     cubes[snakeLocation].classList.add('userOne')
 
+
     function userPressedKey(e) {
+
+      function rightMove() {
+        if (snakeLocation % width < width - 1) {
+          snakeLocation++
+        }
+      }
+
+      function leftMove() {
+        if (snakeLocation % width > 0) {
+          snakeLocation--
+        }
+      }
+
+      function upMove() {
+        if (snakeLocation - width >= 0) {
+          snakeLocation -= width
+        }
+      }
+
+      function downMove() {
+        if (snakeLocation + width < width * height) {
+          snakeLocation += width
+        }
+      }
+
       switch (e.keyCode) {
-        case 39:  // right arrow	
-          if (snakeLocation % width < width - 1) {
-            snakeLocation++
-          } else {
-            console.log('max right direction reached')
-          }
+
+        case 39:  // right arrow
+          rightMove()
           break
         case 37:  // left arrow
-          if (snakeLocation % width > 0) {
-            snakeLocation--
-          } else {
-            console.log('max left direction reached')
-          }
+          leftMove()
           break
         case 40:  // down arrow
-          if (snakeLocation + width < width * height) {
-            snakeLocation += width
-          } else {
-            console.log('max down direction reached')
-          }
+          downMove()
           break
         case 38:  // up arrow	
-          if (snakeLocation - width >= 0) {
-            snakeLocation -= width
-          } else {
-            console.log('max up direction reached')
-          }
+          upMove()
           break
         default:
           console.log('player shouldnt move')
