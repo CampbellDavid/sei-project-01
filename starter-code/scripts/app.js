@@ -8,6 +8,8 @@ function init() {
 
   // Variables
 
+  let snakeArray = []
+
   let level = 0
 
   let score = 0
@@ -68,8 +70,14 @@ function init() {
     snakeLocation = 88
 
     cubes[snakeLocation].classList.add('userOne')
+    
+    
 
     function userPressedKey(e) {
+      
+      snakeArray.push(snakeLocation)
+      snakeArray.splice(score)
+      console.log(snakeArray)
 
       function rightMove() {
         return ((snakeLocation % width < width - 1) ? snakeLocation += 1 : false)
@@ -80,7 +88,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
-          score += 1000
+          score += 1
           clearFood()
           createFood()
           growSnake()
@@ -96,7 +104,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
-          score += 1000
+          score += 1
           clearFood()
           createFood()
           growSnake()
@@ -112,7 +120,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
-          score += 1000
+          score += 1
           clearFood()
           createFood()
           growSnake()
@@ -128,7 +136,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
-          score += 1000
+          score += 1
           clearFood()
           createFood()
           growSnake()
@@ -147,7 +155,10 @@ function init() {
   }
 
   function growSnake() {
-    console.log('snake must grow')
+    snakeArray.splice(0, score)
+    console.log(snakeArray)
+    cubes.forEach(cube => cube.classList.remove('tail'))
+    cubes[score].classList.add('tail')
   }
 
   snakePosition()
