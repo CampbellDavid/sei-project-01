@@ -80,8 +80,10 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          score += 1000
           clearFood()
           createFood()
+          growSnake()
         }
       }
 
@@ -94,8 +96,10 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          score += 1000
           clearFood()
           createFood()
+          growSnake()
         }
       }
 
@@ -108,8 +112,10 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          score += 1000
           clearFood()
           createFood()
+          growSnake()
         }
       }
 
@@ -122,18 +128,26 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          score += 1000
           clearFood()
           createFood()
+          growSnake()
         }
       }
 
       cubes.forEach(cube => cube.classList.remove('userOne'))
       cubes[snakeLocation].classList.add('userOne')
 
+      console.log(score)
+
     }
 
     window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
 
+  }
+
+  function growSnake() {
+    console.log('snake must grow')
   }
 
   snakePosition()
