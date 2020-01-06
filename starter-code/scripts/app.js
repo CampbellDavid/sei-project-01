@@ -70,7 +70,11 @@ function init() {
 
       if (e.keyCode === 39) {
         rightMove()
-        console.log(snakeLocation)
+        console.log(`head of snake is at box number ${snakeLocation}`)
+        if (snakeLocation === foodNumber) {
+          console.log('eaten')
+          createFood()
+        }
       }
 
       function leftMove() {
@@ -79,7 +83,11 @@ function init() {
 
       if (e.keyCode === 37) {
         leftMove()
-        console.log(snakeLocation)
+        console.log(`head of snake is at box number ${snakeLocation}`)
+        if (snakeLocation === foodNumber) {
+          console.log('eaten')
+          createFood()
+        }
       }
 
       function upMove() {
@@ -88,7 +96,11 @@ function init() {
 
       if (e.keyCode === 38) {
         upMove()
-        console.log(snakeLocation)
+        console.log(`head of snake is at box number ${snakeLocation}`)
+        if (snakeLocation === foodNumber) {
+          console.log('eaten')
+          createFood()
+        }
       }
 
       function downMove() {
@@ -97,13 +109,15 @@ function init() {
 
       if (e.keyCode === 40) {
         downMove()
-        console.log(snakeLocation)
+        console.log(`head of snake is at box number ${snakeLocation}`)
+        if (snakeLocation === foodNumber) {
+          console.log('eaten')
+          createFood()
+        }
       }
 
       cubes.forEach(cube => cube.classList.remove('userOne'))
       cubes[snakeLocation].classList.add('userOne')
-
-      console.log(`head of snake is at box number ${snakeLocation}`)
 
     }
 
