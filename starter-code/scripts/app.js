@@ -16,7 +16,9 @@ function init() {
 
   const height = 11                                             // no. boxes for height
 
-  let snakeLocation = Math.floor((height * width) / 2)
+  let snakeLocation = null
+
+  let foodNumber = null
 
   Array(height * width).join('.').split('.').forEach(() => {    // create Array
     const box = document.createElement('div')                   // create a div element on the DOM
@@ -27,65 +29,6 @@ function init() {
 
   // Functions
 
-  function snakePosition() {
-
-    cubes[snakeLocation].classList.add('userOne')
-
-
-    function userPressedKey(e) {
-
-      function rightMove() {
-        if (snakeLocation % width < width - 1) {
-          snakeLocation++
-        }
-      }
-
-      function leftMove() {
-        if (snakeLocation % width > 0) {
-          snakeLocation--
-        }
-      }
-
-      function upMove() {
-        if (snakeLocation - width >= 0) {
-          snakeLocation -= width
-        }
-      }
-
-      function downMove() {
-        if (snakeLocation + width < width * height) {
-          snakeLocation += width
-        }
-      }
-
-      switch (e.keyCode) {
-
-        case 39:  // right arrow
-          rightMove()
-          break
-        case 37:  // left arrow
-          leftMove()
-          break
-        case 40:  // down arrow
-          downMove()
-          break
-        case 38:  // up arrow	
-          upMove()
-          break
-        default:
-          console.log('player shouldnt move')
-      }
-      cubes.forEach(cube => cube.classList.remove('userOne'))
-      cubes[snakeLocation].classList.add('userOne')
-
-      console.log(`head of snake is at box number ${snakeLocation}`)
-
-    }
-
-    window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
-
-  }
-
   function createFood() {
 
     const randomNumbers = new Set()
@@ -93,7 +36,7 @@ function init() {
 
     function generateFood() {
       while (randomNumbers.size < 1) {
-        const foodNumber = Math.floor(Math.random() * ((width * height) - 1))
+        foodNumber = Math.floor(Math.random() * ((width * height) - 1))
         if (foodNumber !== snakeLocation) {
           randomNumbers.add(foodNumber)
           cubes[foodNumber].classList.add('food-location')
@@ -105,7 +48,7 @@ function init() {
         }
 
         console.log(foodNumber)
-
+        
       }
     }
 
@@ -113,8 +56,65 @@ function init() {
 
   }
 
+  function snakePosition() {
+
+    snakeLocation = 88
+
+    cubes[snakeLocation].classList.add('userOne')
+
+    function userPressedKey(e) {
+
+      function rightMove() {
+        return ((snakeLocation % width < width - 1) ? snakeLocation += 1 : false)
+      }
+
+      if (e.keyCode === 39) {
+        rightMove()
+        console.log(snakeLocation)
+      }
+
+      function leftMove() {
+        return ((snakeLocation % width > 0) ? snakeLocation -= 1 : false)
+      }
+
+      if (e.keyCode === 37) {
+        leftMove()
+        console.log(snakeLocation)
+      }
+
+      function upMove() {
+        return ((snakeLocation - width >= 0) ? snakeLocation -= width : false)
+      }
+
+      if (e.keyCode === 38) {
+        upMove()
+        console.log(snakeLocation)
+      }
+
+      function downMove() {
+        return ((snakeLocation + width < width * height) ? snakeLocation += width : false)
+      }
+
+      if (e.keyCode === 40) {
+        downMove()
+        console.log(snakeLocation)
+      }
+
+      cubes.forEach(cube => cube.classList.remove('userOne'))
+      cubes[snakeLocation].classList.add('userOne')
+
+      console.log(`head of snake is at box number ${snakeLocation}`)
+
+    }
+
+    window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
+
+  }
+
   snakePosition()
   createFood()
+
+  
 
   // Event handlers
 
