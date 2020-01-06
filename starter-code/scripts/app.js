@@ -57,7 +57,7 @@ function init() {
         }
 
         console.log(foodNumber)
-        
+
       }
     }
 
@@ -70,18 +70,15 @@ function init() {
     snakeLocation = 88
 
     cubes[snakeLocation].classList.add('userOne')
-    
-    
+
+
 
     function userPressedKey(e) {
-      
+
       snakeArray.push(snakeLocation)
       snakeArray.reverse()
-      console.log(snakeArray)
-
       snakeArray.splice(score)
-      
-      
+      console.log(snakeArray)
 
       function rightMove() {
         return ((snakeLocation % width < width - 1) ? snakeLocation += 1 : false)
@@ -95,7 +92,6 @@ function init() {
           score += 1
           clearFood()
           createFood()
-          growSnake()
         }
       }
 
@@ -111,7 +107,6 @@ function init() {
           score += 1
           clearFood()
           createFood()
-          growSnake()
         }
       }
 
@@ -127,7 +122,6 @@ function init() {
           score += 1
           clearFood()
           createFood()
-          growSnake()
         }
       }
 
@@ -143,7 +137,6 @@ function init() {
           score += 1
           clearFood()
           createFood()
-          growSnake()
         }
       }
 
@@ -158,14 +151,10 @@ function init() {
 
   }
 
-  function growSnake() {
-    console.log(snakeArray)
-  }
-
   snakePosition()
   createFood()
 
-  
+
 
   // Event handlers
 
