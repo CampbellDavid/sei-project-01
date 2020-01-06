@@ -29,6 +29,13 @@ function init() {
 
   // Functions
 
+  function clearFood() {
+    if (foodNumber !== null) {
+      console.log(`food at ${foodNumber}`)
+      cubes[foodNumber].classList.remove('food-location')
+    }
+  }
+
   function createFood() {
 
     const randomNumbers = new Set()
@@ -73,6 +80,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          clearFood()
           createFood()
         }
       }
@@ -86,6 +94,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          clearFood()
           createFood()
         }
       }
@@ -99,6 +108,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          clearFood()
           createFood()
         }
       }
@@ -112,6 +122,7 @@ function init() {
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
+          clearFood()
           createFood()
         }
       }
