@@ -8,7 +8,7 @@ function init() {
 
   // Variables
 
-  let snakeArray = []
+  const snakeArray = []
 
   let level = 0
 
@@ -76,8 +76,12 @@ function init() {
     function userPressedKey(e) {
       
       snakeArray.push(snakeLocation)
-      snakeArray.splice(score)
+      snakeArray.reverse()
       console.log(snakeArray)
+
+      snakeArray.splice(score)
+      
+      
 
       function rightMove() {
         return ((snakeLocation % width < width - 1) ? snakeLocation += 1 : false)
@@ -155,10 +159,7 @@ function init() {
   }
 
   function growSnake() {
-    snakeArray.splice(0, score)
     console.log(snakeArray)
-    cubes.forEach(cube => cube.classList.remove('tail'))
-    cubes[score].classList.add('tail')
   }
 
   snakePosition()
