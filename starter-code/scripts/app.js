@@ -12,6 +12,10 @@ function init() {
 
   let level = 0
 
+  let speed = 300
+
+  let timerId = null
+
   const score = level * 1000
 
   const width = 16                                              // no. boxed for width
@@ -30,6 +34,16 @@ function init() {
   })
 
   // Functions
+
+  function addSnake () {
+    cubes[snakeLocation].classList.add('userOne')
+    snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
+  }
+
+  function remSnake () {
+    cubes.forEach(cube => cube.classList.remove('userOne'))
+    cubes.forEach(cube => cube.classList.remove('tail'))
+  }
 
   function clearFood() {
     if (foodNumber !== null) {
@@ -76,9 +90,12 @@ function init() {
       snakeArray.unshift(snakeLocation)
       snakeArray.splice(level)
       console.log(snakeArray)
+      console.log(snakeArray.toString())
 
       function rightMove() {
-        return ((snakeLocation % width < width - 1) ? snakeLocation += 1 : false)
+        remSnake()
+        snakeLocation % width < width - 1) ? snakeLocation += 1 : false
+        addSnake()
       }
 
       if (e.keyCode === 39) {
@@ -93,7 +110,9 @@ function init() {
       }
 
       function leftMove() {
-        return ((snakeLocation % width > 0) ? snakeLocation -= 1 : false)
+        remSnake()
+        snakeLocation % width > 0) ? snakeLocation -= 1 : false
+        addSnake()
       }
 
       if (e.keyCode === 37) {
@@ -108,11 +127,13 @@ function init() {
       }
 
       function upMove() {
-        return ((snakeLocation - width >= 0) ? snakeLocation -= width : false)
+        remSnake()
+        snakeLocation - width >= 0 ? snakeLocation -= width : false
+        addSnake()
       }
 
       if (e.keyCode === 38) {
-        upMove()
+        timerId = setInterval(upMove, speed)
         console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
@@ -123,7 +144,9 @@ function init() {
       }
 
       function downMove() {
-        return ((snakeLocation + width < width * height) ? snakeLocation += width : false)
+        remSnake()
+        snakeLocation + width < width * height ? snakeLocation += width : false
+        addSnake()
       }
 
       if (e.keyCode === 40) {
@@ -138,7 +161,9 @@ function init() {
       }
 
       cubes.forEach(cube => cube.classList.remove('userOne'))
+      cubes.forEach(cube => cube.classList.remove('tail'))
       cubes[snakeLocation].classList.add('userOne')
+      snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
 
       console.log(score)
 
