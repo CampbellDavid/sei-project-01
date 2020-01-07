@@ -45,19 +45,27 @@ function init() {
   function userPressedKey(e) {
 
     if (e.keyCode === 39) {
-      direction = 'right'
+      if (direction !== 'left') {
+        direction = 'right'
+      }
     }
 
     if (e.keyCode === 37) {
-      direction = 'left'
+      if (direction !== 'right') {
+        direction = 'left'
+      }
     }
 
     if (e.keyCode === 38) {
-      direction = 'up'
+      if (direction !== 'down') {
+        direction = 'up'
+      }
     }
 
     if (e.keyCode === 40) {
-      direction = 'down'
+      if (direction !== 'up') {
+        direction = 'down'
+      }
     }
 
     cubes.forEach(cube => cube.classList.remove('userOne'))
@@ -179,7 +187,7 @@ function init() {
     generateFood()
 
   }
-  
+
   function newGame() {
     createFood()
     addSnake()
