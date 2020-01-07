@@ -14,7 +14,7 @@ function init() {
 
   let level = 0
 
-  let speed = 1000
+  let speed = 250
 
   const score = level * 1000
 
@@ -90,6 +90,19 @@ function init() {
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
+  function eatFood() {
+    if (snakeLocation === foodNumber) {
+      console.log('eaten')
+      level += 1
+      console.log(level)
+      speed -= 20
+      console.log(speed)
+      clearFood()
+      createFood()
+    }
+
+  }
+
   function movement() {
     if (direction === 'right') {
       rightMove()
@@ -107,22 +120,8 @@ function init() {
       downMove()
     }
     eatFood()
+    console.log(`movement speed is ${speed}`)
   }
-
-  
-
-  function eatFood() {
-    if (snakeLocation === foodNumber) {
-      console.log('eaten')
-      level += 1
-      speed -= 50
-      console.log(speed)
-      clearFood()
-      createFood()
-    }
-  }
-
-  
 
   function addSnake() {
     cubes[snakeLocation].classList.add('userOne')
@@ -134,6 +133,7 @@ function init() {
   }
 
   let timerId = setInterval(movement, speed)
+  console.log(timerId)
 
   function remSnake() {
     cubes.forEach(cube => cube.classList.remove('userOne'))
@@ -155,7 +155,7 @@ function init() {
     function generateFood() {
       while (randomNumbers.size < 1) {
         foodNumber = Math.floor(Math.random() * ((width * height) - 1))
-        if (foodNumber !== snakeLocation) {
+        if (foodNumber !== snakeLocation && foodNumber) {
           randomNumbers.add(foodNumber)
           cubes[foodNumber].classList.add('food-location')
           console.log('food is located in box no', foodNumber)
@@ -176,6 +176,7 @@ function init() {
 
   createFood()
   addSnake()
+  // eatFood()
 
   // Event handlers
   window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
