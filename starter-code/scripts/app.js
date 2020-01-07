@@ -10,19 +10,19 @@ function init() {
 
   let direction = null
 
+  let snakeLocation = 88
+
   const snakeArray = []
 
   let level = 0
 
-  let speed = 250
+  let speed = 350
 
   const score = level * 1000
 
   const width = 16                                              // no. boxed for width
 
   const height = 11                                             // no. boxes for height
-
-  let snakeLocation = 88
 
   let foodNumber = null
 
@@ -34,6 +34,13 @@ function init() {
   })
 
   // Functions
+
+  function killGame() {
+    alert('Game Over')
+    remSnake()
+    clearFood()
+    confirm('Play Again?') ? newGame() : false
+  }
 
   function userPressedKey(e) {
 
@@ -64,28 +71,28 @@ function init() {
 
   function rightMove() {
     remSnake()
-    snakeLocation % width < width - 1 ? snakeLocation += 1 : false
+    snakeLocation % width < width - 1 ? snakeLocation += 1 : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function leftMove() {
     remSnake()
-    snakeLocation % width > 0 ? snakeLocation -= 1 : false
+    snakeLocation % width > 0 ? snakeLocation -= 1 : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function downMove() {
     remSnake()
-    snakeLocation + width < width * height ? snakeLocation += width : false
+    snakeLocation + width < width * height ? snakeLocation += width : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function upMove() {
     remSnake()
-    snakeLocation - width >= 0 ? snakeLocation -= width : false
+    snakeLocation - width >= 0 ? snakeLocation -= width : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
@@ -95,12 +102,11 @@ function init() {
       console.log('eaten')
       level += 1
       console.log(level)
-      speed -= 20
+      speed -= 15
       console.log(speed)
       clearFood()
       createFood()
     }
-
   }
 
   function movement() {
@@ -120,8 +126,10 @@ function init() {
       downMove()
     }
     eatFood()
+    let timerId = setTimeout(movement, speed)
     console.log(`movement speed is ${speed}`)
   }
+  movement()
 
   function addSnake() {
     cubes[snakeLocation].classList.add('userOne')
@@ -129,11 +137,9 @@ function init() {
     snakeArray.unshift(snakeLocation)
     snakeArray.splice(level)
     console.log(snakeArray)
+    console.log(snakeLocation)
     console.log(snakeArray.toString())
   }
-
-  let timerId = setInterval(movement, speed)
-  console.log(timerId)
 
   function remSnake() {
     cubes.forEach(cube => cube.classList.remove('userOne'))
@@ -173,10 +179,13 @@ function init() {
     generateFood()
 
   }
+  
+  function newGame() {
+    createFood()
+    addSnake()
+  }
 
-  createFood()
-  addSnake()
-  // eatFood()
+  newGame()
 
   // Event handlers
   window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
