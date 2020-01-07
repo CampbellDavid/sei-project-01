@@ -155,10 +155,7 @@ function init() {
   }
 
   function clearFood() {
-    if (foodNumber !== null) {
-      console.log(`food at ${foodNumber}`)
-      cubes[foodNumber].classList.remove('food-location')
-    }
+    cubes[foodNumber].classList.remove('food-location')
   }
 
   function createFood() {
