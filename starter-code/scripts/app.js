@@ -39,22 +39,18 @@ function init() {
 
     if (e.keyCode === 39) {
       direction = 'right'
-      // movement()
     }
 
     if (e.keyCode === 37) {
       direction = 'left'
-      // movement()
     }
 
     if (e.keyCode === 38) {
       direction = 'up'
-      // movement()
     }
 
     if (e.keyCode === 40) {
       direction = 'down'
-      // movement()
     }
 
     cubes.forEach(cube => cube.classList.remove('userOne'))
@@ -113,17 +109,20 @@ function init() {
     eatFood()
   }
 
-  let timerId = setInterval(movement, speed)
+  
 
   function eatFood() {
     if (snakeLocation === foodNumber) {
       console.log('eaten')
       level += 1
       speed -= 50
+      console.log(speed)
       clearFood()
       createFood()
     }
   }
+
+  
 
   function addSnake() {
     cubes[snakeLocation].classList.add('userOne')
@@ -133,6 +132,8 @@ function init() {
     console.log(snakeArray)
     console.log(snakeArray.toString())
   }
+
+  let timerId = setInterval(movement, speed)
 
   function remSnake() {
     cubes.forEach(cube => cube.classList.remove('userOne'))
