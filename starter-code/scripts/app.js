@@ -35,12 +35,42 @@ function init() {
 
   // Functions
 
+  function userPressedKey(e) {
+
+    if (e.keyCode === 39) {
+      direction = 'right'
+      // movement()
+    }
+
+    if (e.keyCode === 37) {
+      direction = 'left'
+      // movement()
+    }
+
+    if (e.keyCode === 38) {
+      direction = 'up'
+      // movement()
+    }
+
+    if (e.keyCode === 40) {
+      direction = 'down'
+      // movement()
+    }
+
+    cubes.forEach(cube => cube.classList.remove('userOne'))
+    cubes.forEach(cube => cube.classList.remove('tail'))
+    cubes[snakeLocation].classList.add('userOne')
+    snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
+
+    console.log(score)
+
+  }
+
   function rightMove() {
     remSnake()
     snakeLocation % width < width - 1 ? snakeLocation += 1 : false
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
-    eatFood()
   }
 
   function leftMove() {
@@ -48,7 +78,6 @@ function init() {
     snakeLocation % width > 0 ? snakeLocation -= 1 : false
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
-    eatFood()
   }
 
   function downMove() {
@@ -56,7 +85,6 @@ function init() {
     snakeLocation + width < width * height ? snakeLocation += width : false
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
-    eatFood()
   }
 
   function upMove() {
@@ -64,22 +92,28 @@ function init() {
     snakeLocation - width >= 0 ? snakeLocation -= width : false
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
+  }
+
+  function movement() {
+    if (direction === 'right') {
+      rightMove()
+    }
+
+    if (direction === 'left') {
+      leftMove()
+    }
+
+    if (direction === 'up') {
+      upMove()
+    }
+
+    if (direction === 'down') {
+      downMove()
+    }
     eatFood()
   }
 
-  function movement () {
-    if (direction === 'right') {
-      rightMove()
-    } else if (direction === 'left') {
-      leftMove()
-    } else if (direction === 'up') {
-      upMove()
-    } else if (direction === 'down') {
-      downMove()
-    }
-  }
-
-  // let timerId = setInterval(movement, speed)
+  let timerId = setInterval(movement, speed)
 
   function eatFood() {
     if (snakeLocation === foodNumber) {
@@ -94,6 +128,10 @@ function init() {
   function addSnake() {
     cubes[snakeLocation].classList.add('userOne')
     snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
+    snakeArray.unshift(snakeLocation)
+    snakeArray.splice(level)
+    console.log(snakeArray)
+    console.log(snakeArray.toString())
   }
 
   function remSnake() {
@@ -135,54 +173,10 @@ function init() {
 
   }
 
-  function snakePosition() {
-
-    cubes[snakeLocation].classList.add('userOne')
-
-    function userPressedKey(e) {
-
-      snakeArray.unshift(snakeLocation)
-      snakeArray.splice(level)
-      console.log(snakeArray)
-      console.log(snakeArray.toString())
-
-      if (e.keyCode === 39) {
-        direction = 'right'
-        movement()
-      }
-
-      if (e.keyCode === 37) {
-        direction = 'left'
-        movement()
-      }
-
-      if (e.keyCode === 38) {
-        direction = 'up'
-        movement()
-      }
-
-      if (e.keyCode === 40) {
-        direction = 'down'
-        movement()
-      }
-
-      cubes.forEach(cube => cube.classList.remove('userOne'))
-      cubes.forEach(cube => cube.classList.remove('tail'))
-      cubes[snakeLocation].classList.add('userOne')
-      snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
-
-      console.log(score)
-
-    }
-
-    window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
-
-  }
-
-  snakePosition()
   createFood()
+  addSnake()
 
   // Event handlers
-
+  window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
 }
 window.addEventListener('DOMContentLoaded', init)
