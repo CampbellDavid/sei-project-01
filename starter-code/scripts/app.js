@@ -8,6 +8,8 @@ function init() {
 
   // Variables
 
+  let running = false
+
   let direction = null
 
   let snakeLocation = 88
@@ -26,20 +28,30 @@ function init() {
 
   let foodNumber = null
 
-  Array(height * width).join('.').split('.').forEach(() => {    // create Array
-    const box = document.createElement('div')                   // create a div element on the DOM
-    box.classList.add('grid-item')                              // create a class called 'grid item' to the div element
-    cubes.push(box)
-    grid.appendChild(box)                                       // append the element as a child to the 'grid' element
-  })
+  
 
   // Functions
 
+  function makeGrid() {
+    Array(height * width).join('.').split('.').forEach(() => {    // create Array
+      const box = document.createElement('div')                   // create a div element on the DOM
+      box.classList.add('grid-item')                              // create a class called 'grid item' to the div element
+      cubes.push(box)
+      grid.appendChild(box)                                       // append the element as a child to the 'grid' element
+    })
+  }
+
   function killGame() {
     alert('Game Over')
+    running = false
     remSnake()
     clearFood()
+    grid.innerHTML = ''
     confirm('Play Again?') ? newGame() : false
+    
+    // remove the whole grid (grid.innerHTML = '')
+    // add a gavem over , final score, button that starts a new game
+    //when you click the button you createGrid()
   }
 
   function snakeRamsItself() {
@@ -196,8 +208,14 @@ function init() {
   }
 
   function newGame() {
-    createFood()
-    addSnake()
+    if (!running) {
+      makeGrid()
+      createFood()
+      addSnake()
+      running = true
+    } else {
+      running = false
+    }
   }
 
   newGame()
