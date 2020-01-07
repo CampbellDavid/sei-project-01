@@ -42,6 +42,15 @@ function init() {
     confirm('Play Again?') ? newGame() : false
   }
 
+  function snakeRamsItself() {
+    for (let i = 1; i < snakeArray.length; i++) {
+      if (snakeLocation === snakeArray[i]) {
+        console.log('snake crash!')
+        killGame()
+      }
+    }
+  }
+
   function userPressedKey(e) {
 
     if (e.keyCode === 39) {
@@ -147,6 +156,7 @@ function init() {
     console.log(snakeArray)
     console.log(snakeLocation)
     console.log(snakeArray.toString())
+    snakeRamsItself()
   }
 
   function remSnake() {
