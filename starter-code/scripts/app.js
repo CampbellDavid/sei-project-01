@@ -96,11 +96,11 @@ function init() {
         remSnake()
         snakeLocation % width < width - 1 ? snakeLocation += 1 : false
         addSnake()
+        console.log(`head of snake is at box number ${snakeLocation}`)
       }
 
       if (e.keyCode === 39) {
         timerId = setInterval(rightMove, speed)
-        console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
           level += 1
@@ -114,11 +114,11 @@ function init() {
         remSnake()
         snakeLocation % width > 0 ? snakeLocation -= 1 : false
         addSnake()
+        console.log(`head of snake is at box number ${snakeLocation}`)
       }
 
       if (e.keyCode === 37) {
         timerId = setInterval(leftMove, speed)
-        console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
           level += 1
@@ -132,11 +132,11 @@ function init() {
         remSnake()
         snakeLocation - width >= 0 ? snakeLocation -= width : false
         addSnake()
+        console.log(`head of snake is at box number ${snakeLocation}`)
       }
 
       if (e.keyCode === 38) {
         timerId = setInterval(upMove, speed)
-        console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
           level += 1
@@ -150,11 +150,11 @@ function init() {
         remSnake()
         snakeLocation + width < width * height ? snakeLocation += width : false
         addSnake()
+        console.log(`head of snake is at box number ${snakeLocation}`)
       }
 
       if (e.keyCode === 40) {
         timerId = setInterval(downMove, speed)
-        console.log(`head of snake is at box number ${snakeLocation}`)
         if (snakeLocation === foodNumber) {
           console.log('eaten')
           level += 1
