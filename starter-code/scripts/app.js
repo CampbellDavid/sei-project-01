@@ -71,12 +71,11 @@ function init() {
 
     cubes[snakeLocation].classList.add('userOne')
 
-
-
     function userPressedKey(e) {
 
-      snakeArray.push(snakeLocation)
-      snakeArray.reverse()
+      // snakeArray.push(snakeLocation)
+      
+      snakeArray.unshift(snakeLocation)
       snakeArray.splice(score)
       console.log(snakeArray)
 
