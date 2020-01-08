@@ -10,7 +10,7 @@ function init() {
 
   const startGame = document.createElement('button')
 
-  const scoreDisplay = document.createElement('div')
+  const scoreDisplay = document.querySelector('.score')
 
 
 
@@ -46,14 +46,6 @@ function init() {
   // Functions
 
   initiation() // Start game
-
-  function score() {
-    console.log(`Score is ${totalScore}`)
-    console.log(`Level is ${level}`)
-    scoreDisplay.classList.add('score')
-    scoreDisplay.innerHTML = (`Score: ${totalScore}`)
-    outerBox.appendChild(scoreDisplay)
-  }
 
   function initiation() {
     startGame.classList.add('start-game')
@@ -188,6 +180,7 @@ function init() {
       speed -= 15
       console.log(`speed = ${speed}`)
       totalScore += 1000
+      scoreDisplay.innerHTML = totalScore
       console.log(`score = ${totalScore}`)
       clearFood()
       createFood()
@@ -257,7 +250,6 @@ function init() {
       makeGrid()
       createFood()
       addSnake()
-      score()
       running = true
       console.log(running)
     }
