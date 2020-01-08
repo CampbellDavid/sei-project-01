@@ -95,7 +95,7 @@ function init() {
   }
 
   function finalScore() {
-    console.log(`Final score is ${score}`)
+    console.log(`Final score is ${level * 1000}`)
     console.log(`Final level is ${level}`)
     finalScoreDisplay.classList.add('final-score')
     finalScoreDisplay.innerHTML = (`Final score is ${level * 1000}`)
@@ -147,8 +147,6 @@ function init() {
     cubes.forEach(cube => cube.classList.remove('tail'))
     cubes[snakeLocation].classList.add('userOne')
     snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
-
-    console.log(score)
 
   }
 
