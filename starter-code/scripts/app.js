@@ -37,26 +37,17 @@ function init() {
   let movementTimer = null
   console.log(`NEW move counter = ${movementTimer}`)
 
-
+  
 
   // Functions
 
   freshGame()
 
-  function toggleRun() {
-    if (!running) {
-      running = true
-    } else {
-      running = false
-    }
-  }
-
   function freshGame() {
     startGame.classList.add('start-game')
-    startGame.innerHTML = 'Start Game'
+    startGame.innerHTML = 'New Game'
     outerBox.appendChild(startGame)
     startGame.addEventListener('click', newGame)
-    startGame.addEventListener('click', toggleRun)
     startGame.addEventListener('click', timer)
   }
 
@@ -69,9 +60,11 @@ function init() {
   }
 
   function stopTimer() {
-    console.log('timer should have stopped')
-    movementTimer = clearTimeout(movementTimer)
-    console.log(`move counter = ${movementTimer}`)
+    if (!running) {
+      console.log('timer should have stopped')
+      movementTimer = clearTimeout(movementTimer)
+      console.log(`move counter = ${movementTimer}`)
+    }
   }
 
   function makeGrid() {
@@ -85,13 +78,13 @@ function init() {
 
   function killGame() {
     console.log('game over')
-    toggleRun()
+    running = false
     stopTimer()
     remSnake()
     clearFood()
     grid.innerHTML = ''
     finalScore()
-    confirmNewGame()
+    freshGame()
   }
 
   function finalScore() {
@@ -100,12 +93,6 @@ function init() {
     finalScoreDisplay.classList.add('final-score')
     finalScoreDisplay.innerHTML = (`Final score is ${level * 1000}`)
     outerBox.appendChild(finalScoreDisplay)
-  }
-
-  function confirmNewGame() {
-    const newGameButton = document.createElement('button')
-    newGameButton.classList.add('new-game')
-    newGameButton.addEventListener('click', newGame)
   }
 
   function snakeRamsItself() {
@@ -265,6 +252,7 @@ function init() {
       makeGrid()
       createFood()
       addSnake()
+      running = true
       console.log(running)
     }
   }
