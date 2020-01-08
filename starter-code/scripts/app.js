@@ -2,9 +2,13 @@ function init() {
 
   // DOM Variables
 
+  const outerBox = document.querySelector('.outer-box')
+
   const grid = document.querySelector('.grid')
 
   const cubes = []
+
+  const startGame = document.createElement('button')
 
 
 
@@ -40,8 +44,9 @@ function init() {
   freshGame()
 
   function freshGame() {
-    const startGame = document.createElement('button')
     startGame.classList.add('start-game')
+    startGame.innerHTML = 'Start Game'
+    outerBox.appendChild(startGame)
     startGame.addEventListener('click', newGame)
   }
 
@@ -243,6 +248,7 @@ function init() {
   }
 
   function newGame() {
+    outerBox.removeChild(startGame)
     if (!running) {
       makeGrid()
       createFood()
