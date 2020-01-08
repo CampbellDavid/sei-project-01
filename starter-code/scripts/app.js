@@ -6,11 +6,11 @@ function init() {
 
   const grid = document.querySelector('.grid')
 
-  const cubes = []
+  let cubes = []
 
   const startGame = document.createElement('button')
 
-  const finalScoreDisplay = document.createElement('div')
+  const scoreDisplay = document.createElement('div')
 
 
 
@@ -22,9 +22,11 @@ function init() {
 
   let snakeLocation = 88
 
-  const snakeArray = []
+  let snakeArray = []
 
   let level = 0
+
+  let totalScore = 0
 
   let speed = 350
 
@@ -41,14 +43,15 @@ function init() {
 
   // Functions
 
-  freshGame()
+  initiation() // Start game
 
-  function freshGame() {
+  function initiation() {
     startGame.classList.add('start-game')
     startGame.innerHTML = 'New Game'
     outerBox.appendChild(startGame)
     startGame.addEventListener('click', newGame)
     startGame.addEventListener('click', timer)
+    reset()
   }
 
   function timer() {
@@ -82,20 +85,30 @@ function init() {
     stopTimer()
     remSnake()
     clearFood()
+    initiation()
+  }
+
+  function reset() {
     grid.innerHTML = ''
-    finalScore()
-    freshGame()
+    cubes = []
+    snakeArray = []
+    direction = null
+    foodNumber = null
+    level = 0
+    speed = 350
+    snakeLocation = 88
+    totalScore = 0
   }
 
-  function finalScore() {
-    console.log(`Final score is ${level * 1000}`)
-    console.log(`Final level is ${level}`)
-    finalScoreDisplay.classList.add('final-score')
-    finalScoreDisplay.innerHTML = (`Final score is ${level * 1000}`)
-    outerBox.appendChild(finalScoreDisplay)
+  function score() {
+    console.log(`Score is ${totalScore}`)
+    console.log(`Level is ${level}`)
+    scoreDisplay.classList.add('score')
+    scoreDisplay.innerHTML = (`Score: ${totalScore}`)
+    outerBox.appendChild(scoreDisplay)
   }
 
-  function snakeRamsItself() {
+  function selfCollision() {
     for (let i = 1; i < snakeArray.length; i++) {
       if (snakeLocation === snakeArray[i]) {
         console.log('snake crash!')
@@ -169,9 +182,11 @@ function init() {
     if (snakeLocation === foodNumber) {
       console.log('eaten')
       level += 1
-      console.log(level)
+      console.log(`level = ${level}`)
       speed -= 15
-      console.log(speed)
+      console.log(`speed = ${speed}`)
+      totalScore += 1000
+      console.log(`score = ${totalScore}`)
       clearFood()
       createFood()
     }
@@ -207,7 +222,7 @@ function init() {
     console.log(snakeArray)
     console.log(snakeLocation)
     console.log(snakeArray.toString())
-    snakeRamsItself()
+    selfCollision()
   }
 
   function remSnake() {
@@ -220,11 +235,6 @@ function init() {
   }
 
   function createFood() {
-
-    // let randomNumbers = new Set()
-    // console.log(randomNumbers)
-
-    // while (randomNumbers.size < 1) {
     foodNumber = Math.floor(Math.random() * (width * height))
     console.log(foodNumber)
 
@@ -239,27 +249,13 @@ function init() {
     cubes[foodNumber].classList.add('food-location')
   }
 
-  // if (foodNumber !== snakeLocation && foodNumber) {
-  //   randomNumbers.add(foodNumber)
-  //   cubes[foodNumber].classList.add('food-location')
-  //   console.log('food is located in box no', foodNumber)
-  // } else {
-  //   randomNumbers.add(foodNumber - 1)
-  //   cubes[foodNumber - 1].classList.add('food-location')
-  //   console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
-  // }
-
-  // console.log(foodNumber)
-
-  // }
-  // }
-
   function newGame() {
     outerBox.removeChild(startGame)
     if (!running) {
       makeGrid()
       createFood()
       addSnake()
+      score()
       running = true
       console.log(running)
     }
