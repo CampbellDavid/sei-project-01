@@ -10,6 +10,8 @@ function init() {
 
   const startGame = document.createElement('button')
 
+  const finalScoreDisplay = document.createElement('div')
+
 
 
   // Variables
@@ -25,8 +27,6 @@ function init() {
   let level = 0
 
   let speed = 350
-
-  const score = level * 1000
 
   const width = 16
 
@@ -96,9 +96,10 @@ function init() {
 
   function finalScore() {
     console.log(`Final score is ${score}`)
-    const finalScoreDisplay = document.createElement('div')
+    console.log(`Final level is ${level}`)
     finalScoreDisplay.classList.add('final-score')
-    finalScoreDisplay.innerHTML = (`Final score is ${score}`)
+    finalScoreDisplay.innerHTML = (`Final score is ${level * 1000}`)
+    outerBox.appendChild(finalScoreDisplay)
   }
 
   function confirmNewGame() {
