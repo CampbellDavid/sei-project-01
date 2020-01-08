@@ -4,9 +4,11 @@ function init() {
 
   const grid = document.querySelector('.grid')
 
+  const loseScreenDiv = document.createElement('div')
+
   const outerBox = document.querySelector('.outer-box')
 
-  const scoreDisplay = document.querySelector('.score')
+  const scoreDisplay = document.createElement('div')
 
   const startGame = document.createElement('button')
 
@@ -84,7 +86,15 @@ function init() {
     stopTimer()
     removeSnake()
     clearFood()
-    initiation()
+    loseScreen()
+    // initiation()
+  }
+
+  function loseScreen() {
+    outerBox.removeChild(scoreDisplay)
+    loseScreenDiv.classList.add('lose-screen-div')
+    loseScreenDiv.innerHTML = `GAME OVER! Final Score: ${totalScore}`
+    outerBox.appendChild(loseScreenDiv)
   }
 
   function reset() {
@@ -177,7 +187,7 @@ function init() {
       speed -= 15
       // console.log(`speed = ${speed}`)
       totalScore += 1000
-      scoreDisplay.innerHTML = totalScore
+      scoreDisplay.innerHTML = `Score: ${totalScore}`
       // console.log(`score = ${totalScore}`)
       clearFood()
       createFood()
@@ -241,7 +251,9 @@ function init() {
 
   function newGame() {
     outerBox.removeChild(startGame)
-    scoreDisplay.innerHTML = '0000'
+    scoreDisplay.classList.add('score-display')
+    scoreDisplay.innerHTML = 'Score: 0000'
+    outerBox.appendChild(scoreDisplay)
     if (!running) {
       makeGrid()
       createFood()
