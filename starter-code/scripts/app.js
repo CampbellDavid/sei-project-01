@@ -2,42 +2,39 @@ function init() {
 
   // DOM Variables
 
-  const outerBox = document.querySelector('.outer-box')
-
   const grid = document.querySelector('.grid')
 
-  let cubes = []
+  const outerBox = document.querySelector('.outer-box')
+
+  const scoreDisplay = document.querySelector('.score')
 
   const startGame = document.createElement('button')
 
-  const scoreDisplay = document.querySelector('.score')
+  let cubes = []
 
 
 
   // Variables
 
-  let running = false
-
-  let direction = null
-
-  let snakeLocation = 88
-
-  let snakeArray = []
-
-  let level = 0
-
-  // let totalScore = 0
-
-  let speed = 350
+  const height = 11
 
   const width = 16
 
-  const height = 11
+  let direction = null
 
   let foodNumber = null
 
+  let level = 0
+
   let movementTimer = null
-  console.log(`NEW move counter = ${movementTimer}`)
+
+  let running = false
+
+  let snakeArray = []
+
+  let snakeLocation = 88
+
+  let speed = 350
 
   let totalScore = 0
 
@@ -85,7 +82,7 @@ function init() {
     console.log('game over')
     running = false
     stopTimer()
-    remSnake()
+    removeSnake()
     clearFood()
     initiation()
   }
@@ -145,28 +142,28 @@ function init() {
   }
 
   function rightMove() {
-    remSnake()
+    removeSnake()
     snakeLocation % width < width - 1 ? snakeLocation += 1 : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function leftMove() {
-    remSnake()
+    removeSnake()
     snakeLocation % width > 0 ? snakeLocation -= 1 : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function downMove() {
-    remSnake()
+    removeSnake()
     snakeLocation + width < width * height ? snakeLocation += width : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function upMove() {
-    remSnake()
+    removeSnake()
     snakeLocation - width >= 0 ? snakeLocation -= width : killGame()
     addSnake()
     console.log(`head of snake is at box number ${snakeLocation}`)
@@ -220,7 +217,7 @@ function init() {
     selfCollision()
   }
 
-  function remSnake() {
+  function removeSnake() {
     cubes.forEach(cube => cube.classList.remove('userOne'))
     cubes.forEach(cube => cube.classList.remove('tail'))
   }
@@ -232,13 +229,12 @@ function init() {
   function createFood() {
     foodNumber = Math.floor(Math.random() * (width * height))
     console.log(foodNumber)
+    console.log(`The snake array is: ${snakeArray}`)
 
-    while (snakeArray.includes(this.foodNumber)) {
-      foodNumber = Math.floor(Math.random() * (width * height))
-    }
-
-    while (snakeLocation === this.foodNumber) {
-      foodNumber = Math.floor(Math.random() * (width * height))
+    for (let i = 0; i <= snakeArray.length; i++) {
+      if (snakeArray[i] === this.foodNumber || snakeLocation === this.foodNumber) {
+        foodNumber = Math.floor(Math.random() * (width * height))
+      }
     }
 
     cubes[foodNumber].classList.add('food-location')
