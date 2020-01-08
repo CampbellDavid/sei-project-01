@@ -221,25 +221,38 @@ function init() {
 
   function createFood() {
 
-    const randomNumbers = new Set()
-    console.log(randomNumbers)
-    
-    while (randomNumbers.size < 1) {
-      foodNumber = Math.floor(Math.random() * ((width * height) - 1))
-      if (foodNumber !== snakeLocation && foodNumber) {
-        randomNumbers.add(foodNumber)
-        cubes[foodNumber].classList.add('food-location')
-        console.log('food is located in box no', foodNumber)
-      } else {
-        randomNumbers.add(foodNumber - 1)
-        cubes[foodNumber - 1].classList.add('food-location')
-        console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
-      }
+    // let randomNumbers = new Set()
+    // console.log(randomNumbers)
 
-      console.log(foodNumber)
+    // while (randomNumbers.size < 1) {
+    foodNumber = Math.floor(Math.random() * (width * height))
+    console.log(foodNumber)
 
+    while (snakeArray.includes(this.foodNumber)) {
+      foodNumber = Math.floor(Math.random() * (width * height))
     }
+
+    while (snakeLocation === this.foodNumber) {
+      foodNumber = Math.floor(Math.random() * (width * height))
+    }
+
+    cubes[foodNumber].classList.add('food-location')
   }
+
+  // if (foodNumber !== snakeLocation && foodNumber) {
+  //   randomNumbers.add(foodNumber)
+  //   cubes[foodNumber].classList.add('food-location')
+  //   console.log('food is located in box no', foodNumber)
+  // } else {
+  //   randomNumbers.add(foodNumber - 1)
+  //   cubes[foodNumber - 1].classList.add('food-location')
+  //   console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
+  // }
+
+  // console.log(foodNumber)
+
+  // }
+  // }
 
   function newGame() {
     outerBox.removeChild(startGame)
