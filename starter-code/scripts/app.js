@@ -10,10 +10,6 @@ function init() {
 
   // Variables
 
-  const movementTimer = function () {
-    setTimeout(movement, speed)
-  }
-
   let running = false
 
   let direction = null
@@ -34,6 +30,10 @@ function init() {
 
   let foodNumber = null
 
+  let movementTimer = null
+
+  let newGameTimer = null
+
 
 
   // Functions
@@ -49,12 +49,14 @@ function init() {
 
   function killGame() {
     running = false
-    clearTimeout(movementTimer)
+    movementTimer = clearTimeout(movement)
+    console.log(movementTimer)
     remSnake()
     clearFood()
     grid.innerHTML = ''
     finalScore()
-    let newGameTimer = setInterval(confirmNewGame, 3000)
+    newGameTimer = setInterval(confirmNewGame, 3000)
+    console.log(newGameTimer)
   }
 
   function finalScore() {
@@ -171,10 +173,10 @@ function init() {
       downMove()
     }
     eatFood()
-    movementTimer()
+    movementTimer = setTimeout(movement, speed)
     console.log(`movement speed is ${speed}`)
   }
-  movement()
+  
 
   function addSnake() {
     cubes[snakeLocation].classList.add('userOne')
@@ -228,6 +230,7 @@ function init() {
       makeGrid()
       createFood()
       addSnake()
+      movement()
       running = true
     } else {
       running = false
