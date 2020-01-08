@@ -62,7 +62,7 @@ function init() {
   function stopTimer() {
     if (!running) {
       console.log('timer should have stopped')
-      movementTimer = clearTimeout(movementTimer)
+      movementTimer = clearTimeout()
       console.log(`move counter = ${movementTimer}`)
     }
   }
