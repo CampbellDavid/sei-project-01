@@ -31,12 +31,30 @@ function init() {
   let foodNumber = null
 
   let movementTimer = null
-
-  let newGameTimer = null
+  console.log(`NEW move counter = ${movementTimer}`)
 
 
 
   // Functions
+
+  freshGame()
+
+  function freshGame() {
+    const startGame = document.createElement('button')
+    startGame.classList.add('start-game')
+    startGame.addEventListener('click', newGame)
+  }
+
+  function timer() {
+    movementTimer = setTimeout(movement, speed)
+    console.log(`move counter = ${movementTimer}`)
+  }
+
+  function stopTimer() {
+    console.log('timer should have stopped')
+    movementTimer = clearTimeout(movementTimer)
+    console.log(`move counter = ${movementTimer}`)
+  }
 
   function makeGrid() {
     Array(height * width).join('.').split('.').forEach(() => {    // create Array
@@ -50,14 +68,12 @@ function init() {
   function killGame() {
     console.log('game over')
     running = false
-    movementTimer = clearTimeout(movement)
-    console.log(movementTimer)
+    stopTimer()
     remSnake()
     clearFood()
     grid.innerHTML = ''
     finalScore()
-    newGameTimer = setInterval(confirmNewGame, 3000)
-    console.log(newGameTimer)
+    confirmNewGame()
   }
 
   function finalScore() {
@@ -158,6 +174,7 @@ function init() {
   }
 
   function movement() {
+    console.log('movement is still happening')
     if (direction === 'right') {
       rightMove()
     }
@@ -174,8 +191,7 @@ function init() {
       downMove()
     }
     eatFood()
-    movementTimer = setTimeout(movement, speed)
-
+    timer()
     console.log(`movement speed is ${speed}`)
   }
 
@@ -231,15 +247,15 @@ function init() {
       makeGrid()
       createFood()
       addSnake()
-      movement()
+      movement()  // add in button
       console.log('still running')
-      running = true
+      running = true  // add in button
+      console.log('still running after TRUE')
     } else {
       running = false
+      console.log('not running')
     }
   }
-
-  newGame()
 
 
 
