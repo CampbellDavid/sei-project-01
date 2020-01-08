@@ -26,7 +26,7 @@ function init() {
 
   let level = 0
 
-  let totalScore = 0
+  // let totalScore = 0
 
   let speed = 350
 
@@ -39,11 +39,21 @@ function init() {
   let movementTimer = null
   console.log(`NEW move counter = ${movementTimer}`)
 
+  let totalScore = 0
 
+  
 
   // Functions
 
   initiation() // Start game
+
+  function score() {
+    console.log(`Score is ${totalScore}`)
+    console.log(`Level is ${level}`)
+    scoreDisplay.classList.add('score')
+    scoreDisplay.innerHTML = (`Score: ${totalScore}`)
+    outerBox.appendChild(scoreDisplay)
+  }
 
   function initiation() {
     startGame.classList.add('start-game')
@@ -98,14 +108,6 @@ function init() {
     speed = 350
     snakeLocation = 88
     totalScore = 0
-  }
-
-  function score() {
-    console.log(`Score is ${totalScore}`)
-    console.log(`Level is ${level}`)
-    scoreDisplay.classList.add('score')
-    scoreDisplay.innerHTML = (`Score: ${totalScore}`)
-    outerBox.appendChild(scoreDisplay)
   }
 
   function selfCollision() {
