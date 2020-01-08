@@ -56,16 +56,16 @@ function init() {
   function timer() {
     if (running) {
       movementTimer = setTimeout(movement, speed)
-      console.log(`move counter = ${movementTimer}`)
+      // console.log(`move counter = ${movementTimer}`)
     }
-    console.log(`running for timer is ${running}`)
+    // console.log(`running for timer is ${running}`)
   }
 
   function stopTimer() {
     if (!running) {
-      console.log('timer should have stopped')
+      // console.log('timer should have stopped')
       movementTimer = clearTimeout()
-      console.log(`move counter = ${movementTimer}`)
+      // console.log(`move counter = ${movementTimer}`)
     }
   }
 
@@ -145,47 +145,47 @@ function init() {
     removeSnake()
     snakeLocation % width < width - 1 ? snakeLocation += 1 : killGame()
     addSnake()
-    console.log(`head of snake is at box number ${snakeLocation}`)
+    // console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function leftMove() {
     removeSnake()
     snakeLocation % width > 0 ? snakeLocation -= 1 : killGame()
     addSnake()
-    console.log(`head of snake is at box number ${snakeLocation}`)
+    // console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function downMove() {
     removeSnake()
     snakeLocation + width < width * height ? snakeLocation += width : killGame()
     addSnake()
-    console.log(`head of snake is at box number ${snakeLocation}`)
+    // console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function upMove() {
     removeSnake()
     snakeLocation - width >= 0 ? snakeLocation -= width : killGame()
     addSnake()
-    console.log(`head of snake is at box number ${snakeLocation}`)
+    // console.log(`head of snake is at box number ${snakeLocation}`)
   }
 
   function eatFood() {
     if (snakeLocation === foodNumber) {
-      console.log('eaten')
+      // console.log('eaten')
       level += 1
-      console.log(`level = ${level}`)
+      // console.log(`level = ${level}`)
       speed -= 15
-      console.log(`speed = ${speed}`)
+      // console.log(`speed = ${speed}`)
       totalScore += 1000
       scoreDisplay.innerHTML = totalScore
-      console.log(`score = ${totalScore}`)
+      // console.log(`score = ${totalScore}`)
       clearFood()
       createFood()
     }
   }
 
   function movement() {
-    console.log('movement is still happening')
+    // console.log('movement is still happening')
     if (direction === 'right') {
       rightMove()
     }
@@ -203,7 +203,7 @@ function init() {
     }
     eatFood()
     timer()
-    console.log(`movement speed is ${speed}`)
+    // console.log(`movement speed is ${speed}`)
   }
 
   function addSnake() {
@@ -211,9 +211,8 @@ function init() {
     snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
     snakeArray.unshift(snakeLocation)
     snakeArray.splice(level)
-    console.log(snakeArray)
-    console.log(snakeLocation)
-    console.log(snakeArray.toString())
+    // console.log(snakeArray)
+    // console.log(snakeLocation)
     selfCollision()
   }
 
@@ -228,8 +227,8 @@ function init() {
 
   function createFood() {
     foodNumber = Math.floor(Math.random() * (width * height))
-    console.log(foodNumber)
-    console.log(`The snake array is: ${snakeArray}`)
+    // console.log(foodNumber)
+    // console.log(`The snake array is: ${snakeArray}`)
 
     for (let i = 0; i <= snakeArray.length; i++) {
       if (snakeArray[i] === this.foodNumber || snakeLocation === this.foodNumber) {
@@ -242,6 +241,7 @@ function init() {
 
   function newGame() {
     outerBox.removeChild(startGame)
+    scoreDisplay.innerHTML = '0000'
     if (!running) {
       makeGrid()
       createFood()
