@@ -37,7 +37,7 @@ function init() {
   let movementTimer = null
   console.log(`NEW move counter = ${movementTimer}`)
 
-  
+
 
   // Functions
 
@@ -223,27 +223,22 @@ function init() {
 
     const randomNumbers = new Set()
     console.log(randomNumbers)
-
-    function generateFood() {
-      while (randomNumbers.size < 1) {
-        foodNumber = Math.floor(Math.random() * ((width * height) - 1))
-        if (foodNumber !== snakeLocation && foodNumber) {
-          randomNumbers.add(foodNumber)
-          cubes[foodNumber].classList.add('food-location')
-          console.log('food is located in box no', foodNumber)
-        } else {
-          randomNumbers.add(foodNumber - 1)
-          cubes[foodNumber - 1].classList.add('food-location')
-          console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
-        }
-
-        console.log(foodNumber)
-
+    
+    while (randomNumbers.size < 1) {
+      foodNumber = Math.floor(Math.random() * ((width * height) - 1))
+      if (foodNumber !== snakeLocation && foodNumber) {
+        randomNumbers.add(foodNumber)
+        cubes[foodNumber].classList.add('food-location')
+        console.log('food is located in box no', foodNumber)
+      } else {
+        randomNumbers.add(foodNumber - 1)
+        cubes[foodNumber - 1].classList.add('food-location')
+        console.log('food was located in box no', foodNumber, 'now', (foodNumber - 1))
       }
+
+      console.log(foodNumber)
+
     }
-
-    generateFood()
-
   }
 
   function newGame() {
