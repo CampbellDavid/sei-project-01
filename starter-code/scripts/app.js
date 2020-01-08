@@ -48,6 +48,7 @@ function init() {
   }
 
   function killGame() {
+    console.log('game over')
     running = false
     movementTimer = clearTimeout(movement)
     console.log(movementTimer)
@@ -174,9 +175,9 @@ function init() {
     }
     eatFood()
     movementTimer = setTimeout(movement, speed)
+
     console.log(`movement speed is ${speed}`)
   }
-  
 
   function addSnake() {
     cubes[snakeLocation].classList.add('userOne')
@@ -231,6 +232,7 @@ function init() {
       createFood()
       addSnake()
       movement()
+      console.log('still running')
       running = true
     } else {
       running = false
