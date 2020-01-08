@@ -48,6 +48,7 @@ function init() {
     startGame.innerHTML = 'Start Game'
     outerBox.appendChild(startGame)
     startGame.addEventListener('click', newGame)
+    startGame.addEventListener('click', timer)
   }
 
   function timer() {
@@ -253,9 +254,8 @@ function init() {
       makeGrid()
       createFood()
       addSnake()
-      movement()  // add in button
       console.log('still running')
-      running = true  // add in button
+      running = true
       console.log('still running after TRUE')
     } else {
       running = false
