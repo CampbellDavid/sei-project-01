@@ -6,7 +6,13 @@ function init() {
 
   const cubes = []
 
+
+
   // Variables
+
+  const movementTimer = function () {
+    setTimeout(movement, speed)
+  }
 
   let running = false
 
@@ -22,13 +28,13 @@ function init() {
 
   const score = level * 1000
 
-  const width = 16                                              // no. boxed for width
+  const width = 16
 
-  const height = 11                                             // no. boxes for height
+  const height = 11
 
   let foodNumber = null
 
-  
+
 
   // Functions
 
@@ -42,16 +48,26 @@ function init() {
   }
 
   function killGame() {
-    alert('Game Over')
     running = false
+    clearTimeout(movementTimer)
     remSnake()
     clearFood()
     grid.innerHTML = ''
-    confirm('Play Again?') ? newGame() : false
-    
-    // remove the whole grid (grid.innerHTML = '')
-    // add a gavem over , final score, button that starts a new game
-    //when you click the button you createGrid()
+    finalScore()
+    let newGameTimer = setInterval(confirmNewGame, 3000)
+  }
+
+  function finalScore() {
+    console.log(`Final score is ${score}`)
+    const finalScoreDisplay = document.createElement('div')
+    finalScoreDisplay.classList.add('final-score')
+    finalScoreDisplay.innerHTML = (`Final score is ${score}`)
+  }
+
+  function confirmNewGame() {
+    const newGameButton = document.createElement('button')
+    newGameButton.classList.add('new-game')
+    newGameButton.addEventListener('click', newGame)
   }
 
   function snakeRamsItself() {
@@ -155,7 +171,7 @@ function init() {
       downMove()
     }
     eatFood()
-    let timerId = setTimeout(movement, speed)
+    movementTimer()
     console.log(`movement speed is ${speed}`)
   }
   movement()
@@ -220,7 +236,10 @@ function init() {
 
   newGame()
 
+
+
   // Event handlers
-  window.addEventListener('keydown', userPressedKey)  // event handler to listen for user action
+
+  window.addEventListener('keydown', userPressedKey)
 }
 window.addEventListener('DOMContentLoaded', init)
