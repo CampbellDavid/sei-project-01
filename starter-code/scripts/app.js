@@ -43,17 +43,29 @@ function init() {
 
   freshGame()
 
+  function toggleRun() {
+    if (!running) {
+      running = true
+    } else {
+      running = false
+    }
+  }
+
   function freshGame() {
     startGame.classList.add('start-game')
     startGame.innerHTML = 'Start Game'
     outerBox.appendChild(startGame)
     startGame.addEventListener('click', newGame)
+    startGame.addEventListener('click', toggleRun)
     startGame.addEventListener('click', timer)
   }
 
   function timer() {
-    movementTimer = setTimeout(movement, speed)
-    console.log(`move counter = ${movementTimer}`)
+    if (running) {
+      movementTimer = setTimeout(movement, speed)
+      console.log(`move counter = ${movementTimer}`)
+    }
+    console.log(`running for timer is ${running}`)
   }
 
   function stopTimer() {
@@ -73,7 +85,7 @@ function init() {
 
   function killGame() {
     console.log('game over')
-    running = false
+    toggleRun()
     stopTimer()
     remSnake()
     clearFood()
@@ -254,12 +266,7 @@ function init() {
       makeGrid()
       createFood()
       addSnake()
-      console.log('still running')
-      running = true
-      console.log('still running after TRUE')
-    } else {
-      running = false
-      console.log('not running')
+      console.log(running)
     }
   }
 
