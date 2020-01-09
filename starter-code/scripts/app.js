@@ -6,6 +6,8 @@ function init() {
 
   const loseScreenDiv = document.createElement('div')
 
+  const newGameButton = document.createElement('button')
+
   const outerBox = document.querySelector('.outer-box')
 
   const scoreDisplay = document.createElement('div')
@@ -30,6 +32,8 @@ function init() {
 
   let movementTimer = null
 
+  let gameOver = false
+
   let running = false
 
   let snakeArray = []
@@ -40,18 +44,19 @@ function init() {
 
   let totalScore = 0
 
-  
+
 
   // Functions
 
   initiation() // Start game
 
   function initiation() {
+    if (gameOver) {
+      outerBox.removeChild(newGameButton)
+    }
     startGame.classList.add('start-game')
     startGame.innerHTML = 'New Game'
     outerBox.appendChild(startGame)
-    startGame.addEventListener('click', newGame)
-    startGame.addEventListener('click', timer)
     reset()
   }
 
@@ -83,11 +88,15 @@ function init() {
   function killGame() {
     console.log('game over')
     running = false
+    gameOver = true
     stopTimer()
     removeSnake()
     clearFood()
+    grid.innerHTML = ''
     loseScreen()
-    // initiation()
+    newGameButton.classList.add('new-game-button')
+    newGameButton.innerHTML = 'Play Again'
+    outerBox.appendChild(newGameButton)
   }
 
   function loseScreen() {
@@ -107,6 +116,10 @@ function init() {
     speed = 350
     snakeLocation = 88
     totalScore = 0
+
+    if (gameOver) {
+      outerBox.removeChild(loseScreenDiv)
+    }
   }
 
   function selfCollision() {
@@ -250,10 +263,18 @@ function init() {
   }
 
   function newGame() {
-    outerBox.removeChild(startGame)
+
+    if (!gameOver) {
+      outerBox.removeChild(startGame)
+    } else {
+      outerBox.removeChild(newGameButton)
+      reset()
+    }
+
     scoreDisplay.classList.add('score-display')
     scoreDisplay.innerHTML = 'Score: 0000'
     outerBox.appendChild(scoreDisplay)
+
     if (!running) {
       makeGrid()
       createFood()
@@ -261,11 +282,18 @@ function init() {
       running = true
       console.log(running)
     }
+
   }
 
 
 
   // Event handlers
+
+  startGame.addEventListener('click', newGame)
+
+  startGame.addEventListener('click', timer)
+
+  newGameButton.addEventListener('click', newGame)
 
   window.addEventListener('keydown', userPressedKey)
 }
