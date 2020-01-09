@@ -51,12 +51,15 @@ function init() {
   initiation() // Start game
 
   function initiation() {
+
     if (gameOver) {
       outerBox.removeChild(newGameButton)
     }
+
     startGame.classList.add('start-game')
     startGame.innerHTML = 'New Game'
     outerBox.appendChild(startGame)
+
     reset()
   }
 
@@ -119,6 +122,7 @@ function init() {
 
     if (gameOver) {
       outerBox.removeChild(loseScreenDiv)
+      gameOver = false
     }
   }
 
@@ -271,10 +275,6 @@ function init() {
       reset()
     }
 
-    scoreDisplay.classList.add('score-display')
-    scoreDisplay.innerHTML = 'Score: 0000'
-    outerBox.appendChild(scoreDisplay)
-
     if (!running) {
       makeGrid()
       createFood()
@@ -282,6 +282,10 @@ function init() {
       running = true
       console.log(running)
     }
+
+    scoreDisplay.classList.add('score-display')
+    scoreDisplay.innerHTML = 'Score: 0000'
+    outerBox.appendChild(scoreDisplay)
 
   }
 
@@ -294,6 +298,8 @@ function init() {
   startGame.addEventListener('click', timer)
 
   newGameButton.addEventListener('click', newGame)
+
+  newGameButton.addEventListener('click', timer)
 
   window.addEventListener('keydown', userPressedKey)
 }
