@@ -39,7 +39,8 @@ div.grid-item.userOne {
 div.grid-item.food-location {
   width: 40px;
   height: 40px;
-  background-color: blue;
+  background-image: url('../assets/apple.png');
+  background-color: red;
   background-repeat: no-repeat;
   background-size: contain;
 }

@@ -26,7 +26,7 @@ function init() {
 
   let direction = null
 
-  let foodNumber = null
+  // let foodNumber = null
 
   let level = 0
 
@@ -116,7 +116,7 @@ function init() {
     cubes = []
     snakeArray = []
     direction = null
-    foodNumber = null
+    // foodNumber = null
     level = 0
     speed = 350
     snakeLocation = 88
@@ -199,7 +199,10 @@ function init() {
   }
 
   function eatFood() {
-    if (snakeLocation === foodNumber) {
+
+    if (cubes[snakeLocation].classList.contains('food-location')) {
+
+      // if (snakeLocation === foodNumber) {
       // console.log('eaten')
       level += 1
       // console.log(`level = ${level}`)
@@ -251,21 +254,29 @@ function init() {
   }
 
   function clearFood() {
-    cubes[foodNumber].classList.remove('food-location')
+    // cubes[foodNumber].classList.remove('food-location')
+    cubes.forEach(cube => cube.classList.remove('food-location'))
   }
 
   function createFood() {
-    foodNumber = Math.floor(Math.random() * (width * height))
+    const foodNumber = Math.floor(Math.random() * (width * height))
+
+    cubes[foodNumber].classList.add('food-location')
     // console.log(foodNumber)
     // console.log(`The snake array is: ${snakeArray}`)
 
-    for (let i = 0; i <= snakeArray.length; i++) {
-      if (snakeArray[i] === this.foodNumber || snakeLocation === this.foodNumber) {
-        foodNumber = Math.floor(Math.random() * (width * height))
-      }
-    }
 
-    cubes[foodNumber].classList.add('food-location')
+
+    // for (let i = 1; i < snakeArray.length; i++) {
+    // if (snakeArray[i] === this.foodNumber || snakeLocation === this.foodNumber) {
+    if (cubes[foodNumber].classList.contains('userOne') || cubes[foodNumber].classList.contains('tail')) {
+      console.log('food on snake')
+      clearFood()
+      createFood()
+    }
+    // }
+
+
   }
 
   function newGame() {
