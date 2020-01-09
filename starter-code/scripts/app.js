@@ -177,11 +177,6 @@ function init() {
       }
     }
 
-    cubes.forEach(cube => cube.classList.remove('userOne'))
-    cubes.forEach(cube => cube.classList.remove('tail'))
-    cubes[snakeLocation].classList.add('userOne')
-    snakeArray.forEach(cube => cubes[cube].classList.add('tail'))
-
   }
 
   function rightMove() {
