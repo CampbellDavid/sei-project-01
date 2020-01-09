@@ -26,9 +26,9 @@ function init() {
     minimumFractionDigits: 2
   })
 
-  const height = 11
+  const height = 15
 
-  const width = 16
+  const width = 21
 
   let direction = null
 
@@ -189,7 +189,7 @@ function init() {
   function eatFood() {
     if (cubes[snakeLocation].classList.contains('food-location')) {
       level += 1
-      speed -= 15
+      speed -= 10
       totalScore += 100000000
       scoreDisplay.innerHTML = `Net Worth: ${currency.format(totalScore)}`
       clearFood()
