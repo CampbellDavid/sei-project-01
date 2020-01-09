@@ -20,6 +20,12 @@ function init() {
 
   // Variables
 
+  const currency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  })
+
   const height = 11
 
   const width = 16
@@ -95,7 +101,7 @@ function init() {
   function loseScreen() {
     outerBox.removeChild(scoreDisplay)
     loseScreenDiv.classList.add('lose-screen-div')
-    loseScreenDiv.innerHTML = `GAME OVER! Final Score: ${totalScore}`
+    loseScreenDiv.innerHTML = `GAME OVER! Final Value: ${currency.format(totalScore)}`
     outerBox.appendChild(loseScreenDiv)
   }
 
@@ -184,8 +190,8 @@ function init() {
     if (cubes[snakeLocation].classList.contains('food-location')) {
       level += 1
       speed -= 15
-      totalScore += 1000
-      scoreDisplay.innerHTML = `Score: ${totalScore}`
+      totalScore += 100000000
+      scoreDisplay.innerHTML = `Net Worth: ${currency.format(totalScore)}`
       clearFood()
       createFood()
     }
@@ -256,7 +262,7 @@ function init() {
     }
 
     scoreDisplay.classList.add('score-display')
-    scoreDisplay.innerHTML = 'Score: 0000'
+    scoreDisplay.innerHTML = 'Net Worth: $0.00'
     outerBox.appendChild(scoreDisplay)
 
   }

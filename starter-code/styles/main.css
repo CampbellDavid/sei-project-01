@@ -31,6 +31,7 @@ div.grid-item {
 div.grid-item.userOne {
   width: 40px;
   height: 40px;
+  background-image: url('../assets/Steve-Jobs.jpg');
   background-color: black;
   background-repeat: no-repeat;
   background-size: contain;
@@ -39,7 +40,7 @@ div.grid-item.userOne {
 div.grid-item.food-location {
   width: 40px;
   height: 40px;
-  background-image: url('../assets/apple.png');
+  background-image: url('../assets/BitCoin.png');
   background-color: red;
   background-repeat: no-repeat;
   background-size: contain;
@@ -48,6 +49,7 @@ div.grid-item.food-location {
 div.grid-item.tail {
   width: 40px;
   height: 40px;
+  background-image: url('../assets/apple.png');
   background-color: purple;
   background-repeat: no-repeat;
   background-size: contain;
