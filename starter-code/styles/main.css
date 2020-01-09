@@ -14,6 +14,10 @@ body {
   justify-content: center;
 }
 
+div.background {
+  background-image: url(../assets/ipad.png);
+}
+
 div.grid {
   height: 440px;
   width: 640px;
@@ -25,14 +29,14 @@ div.grid {
 div.grid-item {
   width: 40px;
   height: 40px;
-  border: 1px solid black;
+  border: 1px solid transparent;
 }
 
 div.grid-item.userOne {
   width: 40px;
   height: 40px;
   background-image: url('../assets/Steve-Jobs.jpg');
-  background-color: black;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -41,7 +45,7 @@ div.grid-item.food-location {
   width: 40px;
   height: 40px;
   background-image: url('../assets/BitCoin.png');
-  background-color: red;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -50,7 +54,7 @@ div.grid-item.tail {
   width: 40px;
   height: 40px;
   background-image: url('../assets/apple.png');
-  background-color: purple;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
 }
