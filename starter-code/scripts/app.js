@@ -2,11 +2,11 @@ function init() {
 
   // DOM Variables
 
+  // const newGameScreen = document.createElement('div')
+
   const grid = document.querySelector('.grid')
 
   const loseScreenDiv = document.createElement('div')
-
-  const newGameScreen = document.createElement('div')
 
   const newGameButton = document.createElement('button')
 
@@ -66,18 +66,19 @@ function init() {
     supremeBox.appendChild(startGame)
 
     reset()
-    newGameScreenToggle()
   }
 
-  function newGameScreenToggle() {
-    if (!running && !gameOver) {
-      newGameScreen.classList.add('new-game-screen')
-      newGameScreen.innerHTML = 'Welcome to Snake!'
-      grid.appendChild(newGameScreen)
-    } else {
-      grid.removeChild(newGameScreen)
-    }
-  }
+  // function newGameScreenToggle() {
+  //   if (!running && !gameOver) {
+  //     outerBox.removeChild(grid)
+  //     newGameScreen.classList.add('new-game-screen')
+  //     newGameScreen.innerHTML = 'Welcome to Snake!'
+  //     outerBox.appendChild(newGameScreen)
+  //   } else {
+  //     outerBox.removeChild(newGameScreen)
+  //     outerBox.appendChild(grid)
+  //   }
+  // }
 
   function timer() {
     if (running) {
@@ -117,8 +118,7 @@ function init() {
     supremeBox.removeChild(scoreDisplay)
     outerBox.removeChild(grid)
     loseScreenDiv.classList.add('lose-screen-div')
-    loseScreenDiv.innerHTML = `GAME OVER! Final Value: <br/>
-    ${currency.format(totalScore)}`
+    loseScreenDiv.innerHTML = `GAME OVER! Final Value: ${currency.format(totalScore)}`
     outerBox.appendChild(loseScreenDiv)
   }
 
@@ -268,7 +268,7 @@ function init() {
   }
 
   function newGame() {
-
+    
     if (!gameOver) {
       supremeBox.removeChild(startGame)
     } else {
@@ -282,12 +282,6 @@ function init() {
       addSnake()
       running = true
     }
-
-    if (gameOver && !running) {
-      gameOver = false
-    }
-
-    newGameScreenToggle()
 
     scoreDisplay.classList.add('score-display')
     scoreDisplay.innerHTML = 'Net Worth: $0.00'
