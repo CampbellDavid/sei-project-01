@@ -6,9 +6,13 @@ function init() {
 
   const loseScreenDiv = document.createElement('div')
 
+  const newGameScreen = document.createElement('div')
+
   const newGameButton = document.createElement('button')
 
   const outerBox = document.querySelector('.outer-box')
+
+  const supremeBox = document.querySelector('.supreme-box')
 
   const scoreDisplay = document.createElement('div')
 
@@ -54,14 +58,25 @@ function init() {
 
   function initiation() {
     if (gameOver) {
-      outerBox.removeChild(newGameButton)
+      supremeBox.removeChild(newGameButton)
     }
 
     startGame.classList.add('start-game')
     startGame.innerHTML = 'New Game'
-    outerBox.appendChild(startGame)
+    supremeBox.appendChild(startGame)
 
     reset()
+    newGameScreenToggle()
+  }
+
+  function newGameScreenToggle() {
+    if (!running && !gameOver) {
+      newGameScreen.classList.add('new-game-screen')
+      newGameScreen.innerHTML = 'Welcome to Snake!'
+      grid.appendChild(newGameScreen)
+    } else {
+      grid.removeChild(newGameScreen)
+    }
   }
 
   function timer() {
@@ -95,13 +110,15 @@ function init() {
     loseScreen()
     newGameButton.classList.add('new-game-button')
     newGameButton.innerHTML = 'Play Again'
-    outerBox.appendChild(newGameButton)
+    supremeBox.appendChild(newGameButton)
   }
 
   function loseScreen() {
-    outerBox.removeChild(scoreDisplay)
+    supremeBox.removeChild(scoreDisplay)
+    outerBox.removeChild(grid)
     loseScreenDiv.classList.add('lose-screen-div')
-    loseScreenDiv.innerHTML = `GAME OVER! Final Value: ${currency.format(totalScore)}`
+    loseScreenDiv.innerHTML = `GAME OVER! Final Value: <br/>
+    ${currency.format(totalScore)}`
     outerBox.appendChild(loseScreenDiv)
   }
 
@@ -117,6 +134,7 @@ function init() {
 
     if (gameOver) {
       outerBox.removeChild(loseScreenDiv)
+      outerBox.appendChild(grid)
       gameOver = false
     }
   }
@@ -132,24 +150,28 @@ function init() {
   function userPressedKey(e) {
 
     if (e.keyCode === 39) {
+      e.preventDefault()
       if (direction !== 'left') {
         direction = 'right'
       }
     }
 
     if (e.keyCode === 37) {
+      e.preventDefault()
       if (direction !== 'right') {
         direction = 'left'
       }
     }
 
     if (e.keyCode === 38) {
+      e.preventDefault()
       if (direction !== 'down') {
         direction = 'up'
       }
     }
 
     if (e.keyCode === 40) {
+      e.preventDefault()
       if (direction !== 'up') {
         direction = 'down'
       }
@@ -248,9 +270,9 @@ function init() {
   function newGame() {
 
     if (!gameOver) {
-      outerBox.removeChild(startGame)
+      supremeBox.removeChild(startGame)
     } else {
-      outerBox.removeChild(newGameButton)
+      supremeBox.removeChild(newGameButton)
       reset()
     }
 
@@ -261,9 +283,15 @@ function init() {
       running = true
     }
 
+    if (gameOver && !running) {
+      gameOver = false
+    }
+
+    newGameScreenToggle()
+
     scoreDisplay.classList.add('score-display')
     scoreDisplay.innerHTML = 'Net Worth: $0.00'
-    outerBox.appendChild(scoreDisplay)
+    supremeBox.appendChild(scoreDisplay)
 
   }
 

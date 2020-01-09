@@ -12,23 +12,40 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url(../assets/video.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
 }
 
-/* div.background {
-  height: 100vh;
-  width: 100vw;
-  background-image: url(../assets/ipad.png);
+div.outer-box {
+  height: 510px;
+  width: 690px;
+  background-color: rgba(255, 186, 133, 0.616);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-} */
+}
+
+div.new-game-screen {
+  height: 450px;
+  width: 630px;
+  background-color: transparent;
+  color: #000000;
+  font-family: 'Cute Font', Arial, cursive;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 450px;
+  font-size: 70px;
+}
 
 div.grid {
   height: 450px;
   width: 630px;
   display: flex;
   flex-wrap: wrap;
-  background-color: red;
+  background-color: rgba(152, 243, 255, 0.342);
 }
 
 div.grid-item {
@@ -40,26 +57,84 @@ div.grid-item {
 div.grid-item.userOne {
   width: 30px;
   height: 30px;
-  background-image: url('../assets/Steve-Jobs.jpg');
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-color: rgba(0, 69, 139, 0.699);
 }
 
 div.grid-item.food-location {
   width: 30px;
   height: 30px;
-  background-image: url('../assets/BitCoin.png');
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-color: rgba(141, 89, 0, 0.425);
 }
 
 div.grid-item.tail {
   width: 30px;
   height: 30px;
-  background-image: url('../assets/apple.png');
+  background-color: rgba(0, 69, 139, 0.377);
+}
+
+div.lose-screen-div {
+  height: 450px;
+  width: 630px;
+  color: #000000;
+  font-family: 'Cute Font', Arial, cursive;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 450px;
+  font-size: 70px;
+  background-color: rgba(152, 243, 255, 0.342);
+}
+
+button.new-game-button {
+  width: 250px;
+  height: 30px;
+  font-family: 'Cute Font', Arial, cursive;
+  font-size: 26px;
+  background-color: #C2EAFF;
+  color: #000000;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  margin: 10px;
+}
+
+button.new-game-button:active {
+  background-color: #5692B3;
+}
+
+button.start-game {
+  width: 250px;
+  height: 30px;
+  font-family: 'Cute Font', Arial, cursive;
+  font-size: 26px;
+  background-color: #C2EAFF;
+  color: #000000;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  margin: 10px;
+}
+
+button.start-game:active {
+  background-color: #5692B3;
+}
+
+div.score-display {
+  width: 450px;
+  height: 30px;
+  color: #FFFFFF;
+  font-family: 'Cute Font', Arial, cursive;
+  font-size: 26px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+div.supreme-box {
+  height: 600px;
+  width: 780px;
   background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
