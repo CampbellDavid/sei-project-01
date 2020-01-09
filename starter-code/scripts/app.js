@@ -64,11 +64,13 @@ function init() {
   }
 
   function timer() {
+    console.log(movementTimer)
+
     if (running) {
       movementTimer = setTimeout(movement, speed)
-      // console.log(`move counter = ${movementTimer}`)
+      console.log(`move counter = ${movementTimer}`)
     }
-    // console.log(`running for timer is ${running}`)
+    console.log(`running for timer is ${running}`)
   }
 
   function stopTimer() {
