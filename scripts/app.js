@@ -191,11 +191,19 @@ function init() {
   function eatFood() {
     if (cubes[snakeLocation].classList.contains('food-location')) {
       level += 1
-      speed -= 10
-      totalScore += 100000000
+      totalScore += 323539.28
       scoreDisplay.innerHTML = `Net Worth: ${currency.format(totalScore)}`
       clearFood()
       createFood()
+      increaseSpeed()
+    }
+  }
+
+  function increaseSpeed() {
+    if (speed <= 50) {
+      speed += 0
+    } else {
+      speed -= 10
     }
   }
 
