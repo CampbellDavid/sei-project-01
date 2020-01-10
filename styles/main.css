@@ -28,15 +28,15 @@ div.outer-box {
   justify-content: center;
 }
 
-div.new-game-screen {
-  height: 450px;
-  width: 630px;
+.start-screen {
+  height: 100%;
+  width: 100%;
   background-color: transparent;
   color: #000000;
   font-family: 'Cute Font', Arial, cursive;
   text-align: center;
-  vertical-align: middle;
-  line-height: 450px;
+  vertical-align: top;
+  line-height: 100%;
   font-size: 70px;
 }
 

@@ -2,8 +2,6 @@ function init() {
 
   // DOM Variables
 
-  // const newGameScreen = document.createElement('div')
-
   const grid = document.querySelector('.grid')
 
   const loseScreenDiv = document.createElement('div')
@@ -59,26 +57,13 @@ function init() {
   function initiation() {
     if (gameOver) {
       supremeBox.removeChild(newGameButton)
+      reset()
     }
 
     startGame.classList.add('start-game')
     startGame.innerHTML = 'New Game'
     supremeBox.appendChild(startGame)
-
-    reset()
   }
-
-  // function newGameScreenToggle() {
-  //   if (!running && !gameOver) {
-  //     outerBox.removeChild(grid)
-  //     newGameScreen.classList.add('new-game-screen')
-  //     newGameScreen.innerHTML = 'Welcome to Snake!'
-  //     outerBox.appendChild(newGameScreen)
-  //   } else {
-  //     outerBox.removeChild(newGameScreen)
-  //     outerBox.appendChild(grid)
-  //   }
-  // }
 
   function timer() {
     if (running) {
@@ -263,7 +248,6 @@ function init() {
   }
 
   function newGame() {
-    
     if (!gameOver) {
       supremeBox.removeChild(startGame)
     } else {
@@ -272,16 +256,18 @@ function init() {
     }
 
     if (!running) {
+      grid.innerHTML = ''
       makeGrid()
       createFood()
       addSnake()
       running = true
     }
 
+    timer()
+
     scoreDisplay.classList.add('score-display')
     scoreDisplay.innerHTML = 'Net Worth: $0.00'
     supremeBox.appendChild(scoreDisplay)
-
   }
 
 
@@ -290,11 +276,7 @@ function init() {
 
   startGame.addEventListener('click', newGame)
 
-  startGame.addEventListener('click', timer)
-
   newGameButton.addEventListener('click', newGame)
-
-  newGameButton.addEventListener('click', timer)
 
   window.addEventListener('keydown', userPressedKey)
 }
