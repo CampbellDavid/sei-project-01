@@ -248,6 +248,7 @@ function init() {
   }
 
   function newGame() {
+    
     if (!gameOver) {
       supremeBox.removeChild(startGame)
     } else {

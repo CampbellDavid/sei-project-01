@@ -28,15 +28,19 @@ div.outer-box {
   justify-content: center;
 }
 
-.start-screen {
+div.start-screen {
   height: 100%;
   width: 100%;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.start-screen h1 {
   color: #000000;
   font-family: 'Cute Font', Arial, cursive;
   text-align: center;
-  vertical-align: top;
-  line-height: 100%;
   font-size: 70px;
 }
 
