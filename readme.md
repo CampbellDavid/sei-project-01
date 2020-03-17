@@ -63,7 +63,8 @@ Planning for this project took the good portion of a whole day and entailed brai
 
 ## Development
 
-- The Grid
+- The Grid:
+
   The grid is generated using the following code:
 
 ```
@@ -79,13 +80,16 @@ Planning for this project took the good portion of a whole day and entailed brai
 
 This code generates an array that contains a total index length equal to the width multiplied by the height.
 
-- The Snake
+- The Snake:
+
   The snake itself is an array that uses the `unShift` method to change position upon each timeslot, which in-turn is dictated by the level the user has reached (i.e. the higher the level, the shorter the time gap between each function recall).
 
-- Snake Movement
+- Snake Movement:
+
   A series of `if` statements are used to decipher which key the user has pressed and dictate which direction the snake should move in response. Each `if` statement is also equipped with a condition to ensure the user cannot instantaneously move in the opposite direction, as per the rules of the classic snake game (i.e. a user cannot move directly down if they are already travelling upwards on the screen, and vice versa; they must make two right or left turns consecutively).
 
-- Apple/Food generation
+- Apple/Food generation:
+
   The apple starts off in a completely random section of the screen, which is generated to fall between the numbers 0 and 315 (width of 21 multiplied by height of 15). Once a number has been generated, a class of `'food-location'` is added to the number, so the DOM renders the appropriate square number on the table as a different colour, so the user is aware of the location of the food. The following `if` statement is used to ensure that the food does not fall on the same location as the snake:
 
 ```
@@ -95,7 +99,8 @@ if (cubes[foodNumber].classList.contains('userOne') || cubes[foodNumber].classLi
     }
 ```
 
-- Kill Game
+- Kill Game:
+
   Upon the user colliding with a wall or with the tail of the snake, the `killGame()` function is called, which resets all gameplay variables back to their original states and allows the user to restart the game if they wish to.
 
 ```
@@ -115,7 +120,8 @@ if (cubes[foodNumber].classList.contains('userOne') || cubes[foodNumber].classLi
 
 ## Project Management
 
-We structured the ten days we had as follows:
+I structured the seven days I had as follows:
+
 Day 1:
 
 - Planning on paper
