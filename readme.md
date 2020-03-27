@@ -135,6 +135,66 @@ Days 6 - 7:
 - Styling
 - Presentation of end product
 
+## Successes and key learnings
+
+I believe this project posed many challenges for myself that I was able to overcome. This project was truly the steepest learning curve throughout the duration of General Assembly’s Software Engineering Immersive.
+
+My successes throughout the duration of this project include understanding and implementing different methods used on JavaScript data types. For example:
+
+- Learning how to map through items in an array, which is how the grid for the game is produced:
+
+```
+function makeGrid() {
+    Array(height * width).join('.').split('.').forEach(() => {
+      const box = document.createElement('div')
+      box.classList.add('grid-item')
+      cubes.push(box)
+      grid.appendChild(box)
+    })
+  }
+```
+
+- Learning how to use a for loop, which is how the snake knows if it has collided with itself:
+
+```
+function selfCollision() {
+    for (let i = 1; i < snakeArray.length; i++) {
+      if (snakeLocation === snakeArray[i]) {
+        killGame()
+      }
+    }
+  }
+```
+
+- Learning how to use an if statement, which is how the food on the grid knows not to appear on the same square as the snake:
+
+```
+if (cubes[foodNumber].classList.contains('userOne') || cubes[foodNumber].classList.contains('tail')) {
+      clearFood()
+      createFood()
+    }
+```
+
+- Learning how to use a ternary operator, which is how the game knows when to end:
+
+```
+function upMove() {
+    removeSnake()
+    snakeLocation - width >= 0 ? snakeLocation -= width : killGame()
+    addSnake()
+  }
+```
+
+- Learning how to use DOM manipulation techniques, so that the game renders the correct information to the player:
+
+```
+scoreDisplay.classList.add('score-display')
+scoreDisplay.innerHTML = 'Net Worth: $0.00'
+supremeBox.appendChild(scoreDisplay)
+```
+
+Additionally, I improved my ability to work within a tight time frame, how to plan for a project like this, and how to identify my areas of improvement and develop them with confidence.
+
 ## Challenges & future improvements
 
 The development of this game posed many challenges that I am proud I was able to overcome. As this was my first ever attempt using JavaScript to develop an application, coming to understand how certain methods work and how they should be used was initially quite hard. Throughout the journey of this first project, I collaborated and shared ideas with my classmates, as a few of us were attempting to create a snake game.
